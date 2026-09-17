@@ -590,6 +590,149 @@ footer {
 #topBtn { right: 20px; display: none; }
 #musicBtn { left: 20px; }
 
+
+
+/* PREMIUM HERO PHOTO */
+.hero-photo-bg{
+  position:absolute;inset:0;overflow:hidden;z-index:-3;
+}
+.hero-photo-bg img{
+  width:100%;height:100%;object-fit:cover;
+  object-position:center 30%;
+  opacity:.28;
+  filter:saturate(1.18) contrast(1.05);
+  transform:scale(1.04);
+  animation:heroPhotoZoom 14s ease-in-out infinite alternate;
+}
+.hero-photo-bg:after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(3,3,3,.96) 0%,rgba(3,3,3,.72) 45%,rgba(3,3,3,.88) 100%),
+    linear-gradient(0deg,rgba(3,3,3,.98),transparent 55%,rgba(3,3,3,.65));
+}
+@keyframes heroPhotoZoom{from{transform:scale(1.04)}to{transform:scale(1.11)}}
+
+/* PREMIUM FEATURED PHOTO STRIP */
+.featured-photo{
+  display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:24px;
+}
+.featured-photo-card{
+  position:relative;min-height:340px;overflow:hidden;border-radius:26px;
+  border:1px solid var(--border-gold);background:#0c0c0c;
+  box-shadow:0 25px 70px rgba(0,0,0,.55);
+}
+.featured-photo-card img{width:100%;height:100%;min-height:340px;object-fit:cover;display:block}
+.featured-photo-card:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(0,0,0,.78),transparent 60%);
+}
+.featured-photo-card .featured-text{
+  position:absolute;left:22px;right:22px;bottom:20px;z-index:2;
+}
+.featured-photo-card .featured-text span{color:var(--gold-bright);font-size:12px;font-weight:800;letter-spacing:1px}
+.featured-photo-card .featured-text h3{margin:5px 0 0;font-size:24px}
+@media(max-width:700px){.featured-photo{grid-template-columns:1fr}.featured-photo-card,.featured-photo-card img{min-height:250px}}
+
+/* ================= PREMIUM PHOTO GALLERY ================= */
+.gallery-section{padding-top:95px}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.gallery-item{
+  position:relative;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid var(--border-gold);
+  background:#101010;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(0,0,0,.45);
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.gallery-item:hover{
+  transform:translateY(-7px);
+  border-color:var(--gold-bright);
+  box-shadow:0 18px 45px rgba(243,169,59,.22);
+}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .55s ease, filter .55s ease;
+}
+.gallery-item:hover img{transform:scale(1.09);filter:saturate(1.12)}
+.gallery-overlay{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:42px 14px 13px;
+  background:linear-gradient(transparent,rgba(0,0,0,.9));
+  color:#fff;font-size:13px;font-weight:700;
+}
+.gallery-placeholder{
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;color:#999;padding:15px;
+  background:radial-gradient(circle at center,rgba(243,169,59,.12),#0c0c0c 70%);
+}
+.gallery-placeholder b{display:block;color:var(--gold-bright);font-size:18px;margin-bottom:5px}
+.gallery-note{
+  text-align:center;color:var(--muted);font-size:12px;margin-top:18px
+}
+
+/* ================= PHOTO LIGHTBOX ================= */
+.photo-modal{
+  position:fixed;inset:0;z-index:10000;
+  display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(0,0,0,.94);
+  backdrop-filter:blur(12px);
+}
+.photo-modal.open{display:flex}
+.photo-modal-inner{
+  width:min(1050px,100%);text-align:center;position:relative;
+}
+.photo-modal img{
+  max-width:100%;max-height:78vh;border-radius:18px;
+  object-fit:contain;border:1px solid var(--border-gold);
+  box-shadow:0 25px 80px rgba(0,0,0,.75);
+}
+.photo-caption{color:#eee;margin:12px 0;font-size:14px}
+.photo-close,.photo-prev,.photo-next{
+  position:absolute;width:46px;height:46px;border-radius:50%;
+  border:1px solid var(--border-gold);background:rgba(10,10,10,.9);
+  color:#fff;cursor:pointer;font-size:28px;display:flex;
+  align-items:center;justify-content:center;z-index:2;
+}
+.photo-close{right:0;top:-10px}
+.photo-prev{left:8px;top:48%;transform:translateY(-50%)}
+.photo-next{right:8px;top:48%;transform:translateY(-50%)}
+.photo-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.photo-actions .btn{padding:11px 18px}
+
+/* ================= CONTACT ================= */
+.contact-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+}
+.contact-card{
+  padding:26px;border:1px solid var(--border-gold);
+  border-radius:22px;background:var(--card-bg);
+  backdrop-filter:blur(16px);
+}
+.contact-line{
+  padding:15px 0;border-bottom:1px solid rgba(255,255,255,.07);
+  color:#ddd;line-height:1.7;
+}
+.contact-line:last-child{border-bottom:0}
+.contact-line strong{color:var(--gold-bright)}
+
+@media(max-width:900px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .gallery-grid{gap:9px}
+  .gallery-overlay{font-size:11px;padding:35px 9px 9px}
+  .contact-grid{grid-template-columns:1fr}
+  .photo-prev{left:0}.photo-next{right:0}
+  .photo-modal{padding:10px}
+}
+
 /* ANIMATIONS */
 @keyframes pulse {
   0%, 100% { transform: scale(1); filter: drop-shadow(0 0 25px rgba(243, 169, 59, 0.6)); }
@@ -666,6 +809,8 @@ footer {
     <a href="#aarti">आरती</a>
     <a href="#officers">पदाधिकारी</a>
     <a href="#members">सदस्य</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -745,7 +890,9 @@ footer {
           <li data-date="2026-09-21"><span class="date-badge">21/09/26</span><span class="person-name">ऋषिकेश भाऊ मढीकर</span></li>
           <li data-date="2026-09-22"><span class="date-badge">22/09/26</span><span class="person-name">पवन भाऊ धने</span></li>
           <li data-date="2026-09-23"><span class="date-badge">23/09/26</span><span class="person-name">संतोष भाऊ गायकवाड</span></li>
-          <li data-date="2026-09-24"><span class="date-badge">24/09/26</span><span class="person-name">जितेंद्र भाऊ धने</span></li>
+          <li data-date="2026-09-24"><span class="date-badge">24/09/26</span><span class="person-name">विठ्ठल रावसाहेब लंके</span></li>
+          <li data-date="2026-09-25"><span class="date-badge">25/09/26</span><span class="person-name"> श्रीराम भाऊ गायकवाड</span></li>
+
         </ul>
       </div>
 
@@ -763,6 +910,10 @@ footer {
           <li data-date="2026-09-21"><span class="date-badge">21/09/26</span><span class="person-name">अरविंद काका मढीकर</span></li>
           <li data-date="2026-09-22"><span class="date-badge">22/09/26</span><span class="person-name">विशाल भाऊ दिवेकर</span></li>
           <li data-date="2026-09-23"><span class="date-badge">23/09/26</span><span class="person-name">सुनील काका लंके</span></li>
+          <li data-date="2026-09-24"><span class="date-badge">24/09/26</span><span class="person-name">राहुल भाऊ गायकवाड</span></li>
+          <li data-date="2026-09-25"><span class="date-badge">25/09/26</span><span class="person-name">प्रतीक भाऊ सूर्यवंशी</span></li>
+
+
         </ul>
       </div>
     </div>
@@ -771,7 +922,7 @@ footer {
     <div class="glass-card" style="margin-top: 30px; text-align: center; background: linear-gradient(135deg, rgba(243, 169, 59, 0.12), rgba(255, 94, 0, 0.05));">
       <div style="font-size: 40px; margin-bottom: 5px;">🍛</div>
       <h3 style="color: var(--gold-bright); font-size: 1.4rem;">महाप्रसाद अन्नदाते</h3>
-      <p style="font-size: 1.25rem; font-weight: 800; color: #fff; margin-top: 6px;">सुनील सूर्यभान लंके</p>
+      <p style="font-size: 1.25rem; font-weight: 800; color: #fff; margin-top: 6px;">सुनील सूर्यभान लंके व दक्ष नगरीचा राजा लासुरगाव</p>
       <p style="color: var(--muted); font-size: 13px; margin-top: 4px;">बुधवार, 23/09/2026 • संध्याकाळी 7:30 वाजता</p>
     </div>
   </div>
@@ -794,7 +945,7 @@ footer {
       </div>
       <div class="officer-card">
         <div class="officer-icon">⭐</div>
-        <h3>विकास भाऊ सूर्यवंशी</h3>
+        <h3>अजय भाऊ लंके</h3>
         <p>उपाध्यक्ष</p>
       </div>
       <div class="officer-card">
@@ -804,7 +955,7 @@ footer {
       </div>
       <div class="officer-card">
         <div class="officer-icon">📋</div>
-        <h3>रोहित मढीकर</h3>
+        <h3> भैय्या शेठ गायकवाड</h3>
         <p>सचिव</p>
       </div>
       <div class="officer-card">
@@ -862,6 +1013,153 @@ footer {
   </div>
 </section>
 
+
+
+<!-- FEATURED PHOTOS -->
+<section id="darshan">
+  <div class="container reveal">
+    <div class="section-head">
+      <div class="kicker">Featured Darshan</div>
+      <h2>बाप्पाचे खास दर्शन ✨</h2>
+      <p>मंडळाच्या खास क्षणांना premium अंदाजात जपले आहे.</p>
+    </div>
+    <div class="featured-photo">
+      <div class="featured-photo-card">
+        <img src="gallery01.jpg" alt="बाप्पाचे दर्शन" onerror="this.style.display='none'">
+        <div class="featured-text">
+          <span>दक्ष नगरीचा राजा</span>
+          <h3>श्री गणरायाचे मंगलमय दर्शन 🙏</h3>
+        </div>
+      </div>
+      <div class="featured-photo-card">
+        <img src="gallery03.jpg" alt="मंडळातील सुंदर क्षण" onerror="this.style.display='none'">
+        <div class="featured-text">
+          <span>मंडळाच्या आठवणी</span>
+          <h3>बाप्पासोबतचे सुंदर क्षण ❤️</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM PHOTO GALLERY -->
+<section id="gallery" class="gallery-section">
+  <div class="container reveal">
+    <div class="section-head">
+      <div class="kicker">Premium Gallery</div>
+      <h2>बाप्पाच्या सुंदर आठवणी 📸</h2>
+      <p>फोटोवर touch करा — full-screen मध्ये फोटो पाहा आणि Download करा.</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item" data-src="gallery01.jpg" data-title="बाप्पाचे सुंदर दर्शन" style="display:none">
+        <img src="gallery01.jpg" alt="बाप्पाचे सुंदर दर्शन" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ बाप्पाचे सुंदर दर्शन</div>
+      </div>
+      <div class="gallery-item" data-src="gallery02.jpg" data-title="बाप्पासोबतचा सुंदर क्षण" style="display:none">
+        <img src="gallery02.jpg" alt="बाप्पासोबतचा सुंदर क्षण" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ बाप्पासोबतचा सुंदर क्षण</div>
+      </div>
+      <div class="gallery-item" data-src="gallery03.jpg" data-title="मंडळातील बाप्पा" style="display:none">
+        <img src="gallery03.jpg" alt="मंडळातील बाप्पा" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ मंडळातील बाप्पा</div>
+      </div>
+      <div class="gallery-item" data-src="gallery04.jpg" data-title="मंडळाचा सुंदर क्षण" style="display:none">
+        <img src="gallery04.jpg" alt="मंडळाचा सुंदर क्षण" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ मंडळाचा सुंदर क्षण</div>
+      </div>
+      <div class="gallery-item" data-src="gallery05.jpg" data-title="गणेश मूर्ती" style="display:none">
+        <img src="gallery05.jpg" alt="गणेश मूर्ती" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ गणेश मूर्ती</div>
+      </div>
+      <div class="gallery-item" data-src="gallery06.jpg" data-title="खास आठवण" style="display:none">
+        <img src="gallery06.jpg" alt="खास आठवण" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ खास आठवण</div>
+      </div>
+      <div class="gallery-item" data-src="gallery07.jpg" data-title="बाप्पाच्या सेवेत मंडळ" style="display:none">
+        <img src="gallery07.jpg" alt="बाप्पाच्या सेवेत मंडळ" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ बाप्पाच्या सेवेत मंडळ</div>
+      </div>
+      <div class="gallery-item" data-src="gallery08.jpg" data-title="गणेश आगमन" style="display:none">
+        <img src="gallery08.jpg" alt="गणेश आगमन" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ गणेश आगमन</div>
+      </div>
+      <div class="gallery-item" data-src="gallery09.jpg" data-title="मिरवणुकीचा क्षण" style="display:none">
+        <img src="gallery09.jpg" alt="मिरवणुकीचा क्षण" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ मिरवणुकीचा क्षण</div>
+      </div>
+      <div class="gallery-item" data-src="gallery10.jpg" data-title="महाआरती" style="display:none">
+        <img src="gallery10.jpg" alt="महाआरती" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ महाआरती</div>
+      </div>
+      <div class="gallery-item" data-src="gallery11.jpg" data-title="सांस्कृतिक कार्यक्रम" style="display:none">
+        <img src="gallery11.jpg" alt="सांस्कृतिक कार्यक्रम" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ सांस्कृतिक कार्यक्रम</div>
+      </div>
+      <div class="gallery-item" data-src="gallery12.jpg" data-title="मंडळाची सजावट" style="display:none">
+        <img src="gallery12.jpg" alt="मंडळाची सजावट" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ मंडळाची सजावट</div>
+      </div>
+      <div class="gallery-item" data-src="gallery13.jpg" data-title="बाप्पाचे दर्शन" style="display:none">
+        <img src="gallery13.jpg" alt="बाप्पाचे दर्शन" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ बाप्पाचे दर्शन</div>
+      </div>
+      <div class="gallery-item" data-src="gallery14.jpg" data-title="मंडळातील कार्यकर्ते" style="display:none">
+        <img src="gallery14.jpg" alt="मंडळातील कार्यकर्ते" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ मंडळातील कार्यकर्ते</div>
+      </div>
+      <div class="gallery-item" data-src="gallery15.jpg" data-title="उत्सवाची आठवण" style="display:none">
+        <img src="gallery15.jpg" alt="उत्सवाची आठवण" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ उत्सवाची आठवण</div>
+      </div>
+      <div class="gallery-item" data-src="gallery16.jpg" data-title="भक्तीमय क्षण" style="display:none">
+        <img src="gallery16.jpg" alt="भक्तीमय क्षण" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ भक्तीमय क्षण</div>
+      </div>
+      <div class="gallery-item" data-src="gallery17.jpg" data-title="गणेशोत्सव २०२६" style="display:none">
+        <img src="gallery17.jpg" alt="गणेशोत्सव २०२६" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ गणेशोत्सव २०२६</div>
+      </div>
+      <div class="gallery-item" data-src="gallery18.jpg" data-title="बाप्पाची आरती" style="display:none">
+        <img src="gallery18.jpg" alt="बाप्पाची आरती" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ बाप्पाची आरती</div>
+      </div>
+      <div class="gallery-item" data-src="gallery19.jpg" data-title="मंडळाचा सोहळा" style="display:none">
+        <img src="gallery19.jpg" alt="मंडळाचा सोहळा" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ मंडळाचा सोहळा</div>
+      </div>
+      <div class="gallery-item" data-src="gallery20.jpg" data-title="विसर्जन" style="display:none">
+        <img src="gallery20.jpg" alt="विसर्जन" onerror="this.closest('.gallery-item').remove()">
+        <div class="gallery-overlay">✨ विसर्जन</div>
+      </div>
+    </div>
+    <div class="gallery-note">फोटो gallery01.jpg ते gallery20.jpg या नावाने ठेवले की ते आपोआप premium gallery मध्ये दिसतील.</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container reveal">
+    <div class="section-head">
+      <div class="kicker">Contact</div>
+      <h2>संपर्क</h2>
+      <p>दक्ष नगरीचा राजा गणेश मित्र मंडळ लासुरगांव</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-line">🕉️ <strong>मंडळाचे नाव</strong><br>दक्ष नगरीचा राजा गणेश मित्र मंडळ लासुरगांव</div>
+        <div class="contact-line">📍 <strong>गाव</strong><br>लासुरगांव</div>
+        <div class="contact-line">📸 <strong>Instagram</strong><br>मंडळाचे फोटो आणि अपडेट्स Instagram वर पाहा.</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-line">🥁 <strong>आगमन</strong><br>14/09/2026 • संध्याकाळी 8:00</div>
+        <div class="contact-line">🍛 <strong>महाप्रसाद</strong><br>23/09/2026 • संध्याकाळी 7:30</div>
+        <div class="contact-line">🙏 <strong>विसर्जन</strong><br>25/09/2026 • कायगाव टोका</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- INSTAGRAM SECTION -->
 <section>
   <div class="container reveal">
@@ -879,6 +1177,22 @@ footer {
 <footer>
   © २०२६ दक्ष नगरीचा राजा गणेश मित्र मंडळ लासुरगांव • सर्व हक्क सुरक्षित
 </footer>
+
+
+<!-- PREMIUM PHOTO LIGHTBOX -->
+<div class="photo-modal" id="photoModal" aria-hidden="true">
+  <div class="photo-modal-inner">
+    <button class="photo-close" id="photoClose" aria-label="Close">×</button>
+    <button class="photo-prev" id="photoPrev" aria-label="Previous">‹</button>
+    <img id="photoModalImg" src="" alt="Gallery photo">
+    <button class="photo-next" id="photoNext" aria-label="Next">›</button>
+    <div class="photo-caption" id="photoCaption"></div>
+    <div class="photo-actions">
+      <a class="btn primary" id="photoDownload" href="#" download>⬇️ फोटो Download</a>
+      <button class="btn" id="photoClose2">बंद करा</button>
+    </div>
+  </div>
+</div>
 
 <!-- FLOATING BUTTONS -->
 <button class="floating-btn" id="topBtn" aria-label="Top">↑</button>
@@ -1009,6 +1323,57 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+
+
+/* AUTO SHOW ONLY EXISTING PHOTOS */
+document.querySelectorAll("#galleryGrid .gallery-item").forEach(card=>{
+  const img = card.querySelector("img");
+  img.addEventListener("load",()=>{ card.style.display="block"; }, {once:true});
+  if(img.complete && img.naturalWidth > 0) card.style.display="block";
+});
+
+/* PREMIUM PHOTO GALLERY LIGHTBOX */
+const galleryItems = Array.from(document.querySelectorAll(".gallery-item[data-src]"));
+const photoModal = document.getElementById("photoModal");
+const photoModalImg = document.getElementById("photoModalImg");
+const photoCaption = document.getElementById("photoCaption");
+const photoDownload = document.getElementById("photoDownload");
+let photoIndex = 0;
+
+function openGalleryPhoto(index){
+  if(!galleryItems.length) return;
+  photoIndex = (index + galleryItems.length) % galleryItems.length;
+  const item = galleryItems[photoIndex];
+  const src = item.getAttribute("data-src");
+  photoModalImg.src = src;
+  photoCaption.textContent = item.getAttribute("data-title") || "";
+  photoDownload.href = src;
+  photoModal.classList.add("open");
+  photoModal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+function closeGalleryPhoto(){
+  photoModal.classList.remove("open");
+  photoModal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+galleryItems.forEach((item,index)=>{
+  item.addEventListener("click",()=>openGalleryPhoto(index));
+});
+document.getElementById("photoClose").addEventListener("click",closeGalleryPhoto);
+document.getElementById("photoClose2").addEventListener("click",closeGalleryPhoto);
+document.getElementById("photoPrev").addEventListener("click",()=>openGalleryPhoto(photoIndex-1));
+document.getElementById("photoNext").addEventListener("click",()=>openGalleryPhoto(photoIndex+1));
+photoModal.addEventListener("click",(e)=>{
+  if(e.target === photoModal) closeGalleryPhoto();
+});
+document.addEventListener("keydown",(e)=>{
+  if(!photoModal.classList.contains("open")) return;
+  if(e.key === "Escape") closeGalleryPhoto();
+  if(e.key === "ArrowLeft") openGalleryPhoto(photoIndex-1);
+  if(e.key === "ArrowRight") openGalleryPhoto(photoIndex+1);
+});
 
 /* TOP BUTTON & MUSIC */
 const topBtn = document.getElementById("topBtn");
